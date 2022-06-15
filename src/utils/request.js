@@ -4,7 +4,7 @@ import axios from 'axios'
 // 创建一个axios的实例
 const service = axios.create({
   // baseURL: 'http://ihrm-java.itheima.net', // 设置axios请求的基础的基础地址
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: process.env.VUE_APP_BASE_API, // 使用环境变量
   timeout: 5000 // 定义5秒超时
 })
 

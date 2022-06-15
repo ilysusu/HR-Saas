@@ -31,10 +31,17 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
     overlay: {
       warnings: false,
       errors: true
+    },
+    // 代理配置
+    proxy: {
+      '/api': {
+        // 如果请求地址以/api打头,就出触发代理机制
+        target: 'http://ihrm-java.itheima.net'
+        // target: 'http://192.168.71.189:3000' // 我们要代理的真实接口地址
+      }
     }
   },
   configureWebpack: {
