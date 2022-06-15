@@ -116,13 +116,13 @@ export default {
     async doLogin() {
       try {
         this.loading = true
-        const { data: res } = await login(this.data)
-        console.log('res', res)
+        const res = await login(this.data)
+        console.log('loginRes', res)
         this.$message.success(res.message)
         this.loading = false
       } catch (e) {
         this.loading = false
-        this.$message.error(e)
+        this.$message.error(e.message)
       }
     },
     handleLogin() {

@@ -8,6 +8,17 @@ const service = axios.create({
 })
 
 // service.interceptors.request.use() // 请求拦截器
-// service.interceptors.response.use() // 响应拦截器
+// 响应拦截器
+service.interceptors.response.use(response => {
+  console.log('response', response)
+  if (!response.data.success) {
+    // 如果success为 false 业务错误，直接茶法reject 被catch分支捕获
+    return Promise.reject(new Error(response.data.message))
+  }
+  // 操作成功
+  return response.data
+}, error => {
+  return Promise.reject(error) // 返回执行错误 让当前的执行链跳出成功 直接进入 catch
+})
 
 export default service // 导出axios实例
