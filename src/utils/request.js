@@ -3,8 +3,8 @@ import axios from 'axios'
 
 // 创建一个axios的实例
 const service = axios.create({
-  baseURL: 'http://ihrm-java.itheima.net',
-  timeout: 5000 // request timeout
+  baseURL: 'http://ihrm-java.itheima.net', // 设置axios请求的基础的基础地址
+  timeout: 5000 // 定义5秒超时
 })
 
 // service.interceptors.request.use() // 请求拦截器

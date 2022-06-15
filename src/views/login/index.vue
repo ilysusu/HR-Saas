@@ -59,6 +59,7 @@
 
 <script>
 import { validUserMobile } from '@/utils/validate'
+import { login } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -100,6 +101,7 @@ export default {
     }
   },
   methods: {
+    // 显示密码
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -110,10 +112,21 @@ export default {
         this.$refs.password.focus()
       })
     },
-    doLogin() {
-      console.log(1)
+    // 发送登录 请求
+    async doLogin() {
+      try {
+        this.loading = true
+        const { data: res } = await login(this.data)
+        console.log('res', res)
+        this.$message.success(res.message)
+        this.loading = false
+      } catch (e) {
+        this.loading = false
+        this.$message.error(e)
+      }
     },
     handleLogin() {
+      // 校验
       this.$refs.loginForm.validate(valid => {
         valid && this.doLogin()
       })
